@@ -2,15 +2,17 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { FaBars, FaSearch, FaArrowLeft, FaMicrophone, FaHome, FaInfoCircle, FaStore } from 'react-icons/fa';
+import { FaBars, FaSearch, FaArrowLeft, FaMicrophone, FaHome, FaInfoCircle, FaStore, FaShoppingCart } from 'react-icons/fa';
 import { IoIosContacts } from 'react-icons/io';
+import { useShoppingCart } from 'use-shopping-cart';
+import { Button } from '@/components/ui/button';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false); // Toggle for search input
   const [showHeaderContent, setShowHeaderContent] = useState(true); // Control visibility of other elements
   const dropdownRef = useRef<HTMLDivElement>(null);
-
+ const {handleCartClick} = useShoppingCart()
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -116,6 +118,8 @@ const Header = () => {
                 <FaStore className="text-xl" />
                 <span>Shop</span>
               </Link>
+              <Button onClick={()=> handleCartClick() }>
+                    <FaShoppingCart size={24} /></Button>
             </nav>
 
           </div>
@@ -144,6 +148,7 @@ const Header = () => {
               <FaStore className="text-xl" />
               <span>Shop</span>
             </Link>
+            
           </nav>
         </div>
       )}

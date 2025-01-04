@@ -7,10 +7,18 @@ import { IoStar } from 'react-icons/io5'
 import Foot from './component/foot/page'
 import LikeButton from './component/like/page'
 
+interface SanityImage {
+  _type: 'image';
+  asset: {
+    _ref: string;
+    _type: 'reference';
+  };
+  alt?: string;
+}
 interface Iproduct{
   description:string,
   Title:string,
-  image:string,
+  image:SanityImage,
   slug:string,
   price:number,
   discountedprice:string
@@ -22,6 +30,7 @@ async function Shop() {
  
   const data:Iproduct[] = await getProductData()
   console.log(data)
+  
  
  
   return (
@@ -58,7 +67,8 @@ async function Shop() {
           <h3 className="font-medium">${item.discountedprice}</h3>
          </div>
          <p className=' md:mx-20 lg:mx-16 xl:mx-20'>
-         <Link href={'/component/cart'} className='bg-yellow-400 px-2 py-1 rounded-full '>Add To Cart</Link>
+         {/* <AddToCart currency='USD' price={item.price} image={item.image} name={item.Title} description={item.description} /> */}
+         
          </p>
         </div>
       </div>

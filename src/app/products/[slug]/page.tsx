@@ -1,3 +1,4 @@
+import AddToCart from '@/app/component/addtocart';
 import { Button } from '@/components/ui/button';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
@@ -38,7 +39,6 @@ export default async function Page({
   if (!product) {
     return <div>Product not found</div>;
   }
-
   return (
     <div className='bg-white my-10'>
       <div className='mx-auto max-w-screen-xl px-4 md:px-8'>
@@ -82,9 +82,15 @@ export default async function Page({
               <span className='text-sm'>2- 4 Day shipping</span>
             </div>
             <div className='flex gap-x-2.5'>
-              {/* <AddtoCart  currency='USD' description={data.description} price={data.price} image={data.image} name={data.title}/> */}
               <Button variant={'outline'}>Checkout Now</Button>
-              
+              {/* <AddToCart  currency='USD' description={product.description} price={product.price} image={product.image} name={product.Title}/> */}
+              <AddToCart
+                currency="USD"
+                description={product.description}
+                image={product.image} // Change: Ensure this matches AddToCart type
+                price={product.price}
+                name={product.Title}
+              />
             </div>
             <p className='mt-8 text-gray-500 text-xl'>{product.description}</p>
           </div>
